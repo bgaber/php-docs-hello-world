@@ -1,9 +1,6 @@
-venv
-config.py
 *.v*.py
 *.v*.js
 *.v*.html
 *.v*.css
-*.php
 *.pptx
 *.txt
