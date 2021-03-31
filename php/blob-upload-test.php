@@ -44,7 +44,7 @@ echo "<link rel='stylesheet' type='text/css' href='//code.jquery.com/ui/1.11.4/t
 <body>
 
 <?php
-require_once 'vendor/autoload.php';
+require_once '/vendor/autoload.php';
     
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
