@@ -237,7 +237,7 @@ function upload_using_azure_storage_sdk() {
 
         //Upload JSON Content as a BLOB
         $blobClient->createBlockBlob($containerName, $blobFileName, $jsonContent);
-		echo "The JSON content has been uploaded as a BLOB to the Azure Storage Container named $containerName<br>\n";
+		echo "The JSON content has been uploaded with name of $blobFileName as a BLOB to the Azure Storage Container named $containerName<br>\n";
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
