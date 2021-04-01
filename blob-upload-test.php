@@ -197,7 +197,7 @@ function upload_using_azure_storage_sdk() {
 
 	//echo "Composed \$_POST associative array into JSON<br>\n";
 	//$myJSON = json_encode($_POST);
-    //echo $myJSON; // output JSON to browser
+    echo $myJSON; // output JSON to browser
     $fileToUpload = "{$id}-user-rcd.json";
 	$fqp2FileToUpload = "/var/www/html/php/tmpUploadDir/{$fileToUpload}";
 	file_put_contents($fqp2FileToUpload, $myJSON);
