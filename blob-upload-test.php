@@ -191,6 +191,7 @@ function upload_using_azure_storage_sdk() {
 	//echo "Composed \$_POST associative array into JSON<br>\n";
 	//$jsonContent = json_encode($_POST);
     //echo $jsonContent; // output JSON to browser
+    $blobFileName = "{$id}-user-rcd.json";
 	    
     // Upload JSON to Azure
     //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
@@ -235,7 +236,7 @@ function upload_using_azure_storage_sdk() {
         echo "<br />";
 
         //Upload JSON Content as a BLOB
-        $blobClient->createBlockBlob($containerName, $fileToUpload, $jsonContent);
+        $blobClient->createBlockBlob($containerName, $blobFileName, $jsonContent);
 		echo "The JSON content has been uploaded as a BLOB to the Azure Storage Container named $containerName<br>\n";
     }
     catch(ServiceException $e){
