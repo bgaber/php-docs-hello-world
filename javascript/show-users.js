@@ -21,7 +21,7 @@ $(document).ready(function() {
                 for (const key in item) {
                     console.log(`${key}: ${item[key]}`);
                     // Azure Cosmos DB Unique Document Id
-                    if (key == 'id' or key == 'account_number' or key == 'uid' or key == 'username' or key == 'telephoneNumber' or key == 'address' or key == 'city' or key == 'prov' or key == 'postal' or key == 'picture' or key == 'audio') {
+                    if (key == 'id' || key == 'account_number' || key == 'uid' || key == 'username' || key == 'telephoneNumber' || key == 'address' || key == 'city' || key == 'prov' || key == 'postal' || key == 'picture' || key == 'audio') {
                         all_items += `<td>${item[key]}</td>`;
                         rcd_id = key;
                     }
