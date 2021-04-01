@@ -170,7 +170,7 @@ function upload_using_azure_storage_sdk() {
     // 1. compose a JSON document with all the user record values
     // 2. upload that JSON document to Azure Storage Blob Container
     // 3. create an Azure Function in Python that writes the JSON data composed in Step 1 into Cosmos DB
-    // 4. configure Azure Storage Blob Container to trigger the Azure function whenever there is an upload
+    // 4. configure Azure Storage Blob Container to trigger the Azure function whenever there is a JSON file uploaded
 
     // Compose JSON from $_POST associative array
 	echo "Composed individual elements into JSON<br>\n";
@@ -223,19 +223,11 @@ function upload_using_azure_storage_sdk() {
 	echo "Container Name: $containerName<br>\n";
     
     try {
-        // Create container.
-        //$blobClient->createContainer($containerName, $createContainerOptions);
-
-        // Getting local file so that we can upload it to Azure
-        //$myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
-        //fclose($myfile);
-        
-        # Upload file as a block blob
-        echo "Uploading BlockBlob: ".PHP_EOL;
+        echo "Create BlockBlob from: ".PHP_EOL;
         echo $jsonContent;
         echo "<br />";
 
-        //Upload JSON Content as a BLOB
+        //Create Block BLOB from the JSON Content
         $blobClient->createBlockBlob($containerName, $blobFileName, $jsonContent);
 		echo "The JSON content has been uploaded with name of $blobFileName as a BLOB to the Azure Storage Container named $containerName<br>\n";
     }
