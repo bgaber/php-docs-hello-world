@@ -55,7 +55,6 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 initial_html();
 
 if (isset($_POST['uid']) and $_POST['uid'] != "") {
-    //upload_using_php_function();
 	upload_using_azure_storage_sdk();
 }
 
@@ -164,12 +163,6 @@ function initial_html() {
 	echo "<div id='dialog-message' title='Invalid Data Warning'></div>\n";
 }
     
-function upload_using_php_function() {
-    $local_file = "February-Cloud-Guru-Challenge-diagram.webp";
-    $dest_url = "https://cloudsavestorage.blob.core.windows.net/cloud-save-blob-container";
-    copy($local_file, $dest_url);
-}
-    
 function upload_using_azure_storage_sdk() {
     // https://github.com/Azure-Samples/storage-blobs-php-quickstart/blob/master/phpQS.php
     //
@@ -193,14 +186,11 @@ function upload_using_azure_storage_sdk() {
 	$myObj->postal          = $_POST['postal'];
     $myObj->picture         = "{$id}.png";
     $myObj->audio           = "{$id}.wav";
-	$myJSON = json_encode($myObj);
+	$jsonContent = json_encode($myObj);
 
 	//echo "Composed \$_POST associative array into JSON<br>\n";
-	//$myJSON = json_encode($_POST);
-    echo $myJSON; // output JSON to browser
-    $fileToUpload = "{$id}-user-rcd.json";
-	$fqp2FileToUpload = "/var/www/html/php/tmpUploadDir/{$fileToUpload}";
-	file_put_contents($fqp2FileToUpload, $myJSON);
+	//$jsonContent = json_encode($_POST);
+    //echo $jsonContent; // output JSON to browser
 	    
     // Upload JSON to Azure
     //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
@@ -228,10 +218,6 @@ function upload_using_azure_storage_sdk() {
     // private to the account owner.
     $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
-    // Set container metadata - CAN PROBABLY BE REMOVED
-    //$createContainerOptions->addMetaData("key1", "value1");
-    //$createContainerOptions->addMetaData("key2", "value2");
-
 	$containerName = "cloud-save-blob-container";
 	echo "Container Name: $containerName<br>\n";
     
@@ -245,14 +231,12 @@ function upload_using_azure_storage_sdk() {
         
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $fileToUpload;
+        echo $jsonContent;
         echo "<br />";
-        
-        $content = fopen($fqp2FileToUpload, "r");
 
-        //Upload blob
-        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-		echo "$fileToUpload has been uploaded to the Azure Storage Container named $containerName<br>\n";
+        //Upload JSON Content as a BLOB
+        $blobClient->createBlockBlob($containerName, $fileToUpload, $jsonContent);
+		echo "The JSON content has been uploaded as a BLOB to the Azure Storage Container named $containerName<br>\n";
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
