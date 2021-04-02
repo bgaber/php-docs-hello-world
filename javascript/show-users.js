@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
     
     $.ajax({
-        url: "https://get-all-cosmosdb-docs1.azurewebsites.net/api/httpgetcosmosdbrcdstrigger",
+        url: "https://cloud-save-function-app.azurewebsites.net/api/httpgetcosmosdbrcdstrigger",
         type: "GET",
         // The type of data expected back
         dataType: "json",
