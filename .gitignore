@@ -2,3 +2,6 @@
 *.v*.js
 *.v*.html
 *.v*.css
+*.v*.json
+*.v*.php
+*.v*.yml
