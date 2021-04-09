@@ -59,7 +59,8 @@ if (isset($_POST['uid']) and $_POST['uid'] != "") {
 }
 
 function initial_html() {
-    $environment_variable = getenv("APPSETTING_TESTENV");
+    //$environment_variable = getenv("APPSETTING_TESTENV");
+    $environment_variable = getenv("TESTENV");
     echo "Test Environment Variable read from App Service Application Settings: <b>$environment_variable</b><br>\n";
 	echo "<form method='post' enctype='multipart/form-data' name='add_user'>\n";
 	echo "	<center>\n";
