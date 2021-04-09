@@ -59,8 +59,8 @@ if (isset($_POST['uid']) and $_POST['uid'] != "") {
 }
 
 function initial_html() {
-    $env = getenv("TESTENV")
-    echo "<b>$env</b>"
+    $env = getenv("TESTENV");
+    echo "<b>$env</b>\n";
 	echo "<form method='post' enctype='multipart/form-data' name='add_user'>\n";
 	echo "	<center>\n";
 	echo "		<table width='95%'>\n";
