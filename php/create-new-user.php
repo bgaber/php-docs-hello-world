@@ -60,7 +60,7 @@ if (isset($_POST['uid']) and $_POST['uid'] != "") {
 
 function initial_html() {
     //$environment_variable = getenv("APPSETTING_TESTENV");
-    $environment_variable = getenv("TESTENV");
+    //$environment_variable = getenv("TESTENV");
     echo "Test Environment Variable read from App Service Application Settings: <b>$environment_variable</b><br>\n";
 	echo "<form method='post' enctype='multipart/form-data' name='add_user'>\n";
 	echo "	<center>\n";
@@ -176,7 +176,7 @@ function upload_using_azure_storage_sdk() {
     // 4. configure Azure Storage Blob Container to trigger the Azure function whenever there is a JSON file uploaded
 
     // Compose JSON from $_POST associative array
-	echo "Composed individual elements into JSON<br>\n";
+	echo "Compose individual elements into JSON formatted string<br>\n";
     $id = rand(1000000, 9999999);
     $myObj->id              = "$id"; // needs to be enclosed in quotes or this JSON will not be accepted by CosmosDB
     $myObj->account_number  = $_POST['uid'];
@@ -198,7 +198,8 @@ function upload_using_azure_storage_sdk() {
 	    
     // Upload JSON to Azure
     //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
-	$connectionString = "DefaultEndpointsProtocol=https;AccountName=cloudsavestorage;AccountKey=qjQo0fAdeD9ie34XJFUHeTlbp485eLQTVw4AZml223vJbKgmWELOWvqBeU/pj828BXNzHrgEZMTj8EMLcGiphg==;EndpointSuffix=core.windows.net"; //Enter deployment key
+    $connectionString = getenv("BLOB_STORAGE_CONN_STR");
+    //Enter deployment key
 
     // Create blob client.
     $blobClient = BlobRestProxy::createBlobService($connectionString);
