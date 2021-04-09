@@ -60,7 +60,7 @@ if (isset($_POST['uid']) and $_POST['uid'] != "") {
 
 function initial_html() {
     $env = getenv("TESTENV");
-    echo "<b>$env</b>\n";
+    echo "Test Environment Variable read from App Service Applicatin Settings: <b>$env</b><br>\n";
 	echo "<form method='post' enctype='multipart/form-data' name='add_user'>\n";
 	echo "	<center>\n";
 	echo "		<table width='95%'>\n";
